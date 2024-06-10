@@ -1,1 +1,1 @@
-Hello, Hexlet! How are you?
+Welcome to my first project in Hexlet

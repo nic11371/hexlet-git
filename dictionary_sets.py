@@ -1,8 +1,8 @@
-def diff_keys(old_dictionary, new_dictionary):
+def diff_keys(old, new):
     dictionary_result = {}
-    dictionary_result['kept'] = new_dictionary.keys() & old_dictionary.keys()
-    dictionary_result['added'] = new_dictionary.keys() - old_dictionary.keys()
-    dictionary_result['removed'] = old_dictionary.keys() - new_dictionary.keys()
+    dictionary_result['kept'] = new.keys() & old.keys()
+    dictionary_result['added'] = new.keys() - old.keys()
+    dictionary_result['removed'] = old.keys() - new.keys()
     return dictionary_result
 
 

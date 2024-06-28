@@ -1,1 +1,1 @@
-Welcome to my first project in Hexlet
+Welcome to my first small solutions in Hexlet

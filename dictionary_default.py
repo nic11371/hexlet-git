@@ -1,6 +1,3 @@
-from collections import defaultdict
-
-
 def collect_indexes(source):
     dict = {}
     for i, e in enumerate(source):

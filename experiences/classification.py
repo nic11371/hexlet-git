@@ -1,34 +1,43 @@
 def is_degenerated(coords):
-    if coords[0][0] == coords[1][0] and coords[1][0] == coords[1][1]:
+    (x1, y1), (x2, y2) = coords
+    if x1 == x2 and y1 == y2:
         return True
     return False
 
 
 def is_vertical(coords):
-    if coords[0][0] == coords[1][0]:
+    (x1, y1), (x2, y2) = coords
+    if x1 == x2 and y1 == y2:
+        return False
+    if x1 == x2:
         return True
     return False
 
 
 def is_horizontal(coords):
-    if coords[0][1] == coords[1][1]:
+    (x1, y1), (x2, y2) = coords
+    if x1 == x2 and y1 == y2:
+        return False
+    if y1 == y2:
         return True
     return False
 
 
 def is_inclined(coords):
-    if coords[0][0] != coords[1][0] and coords[1][0] != coords[1][1]:
+    (x1, y1), (x2, y2) = coords
+    if x1 != x2 and y1 != y2:
         return True
     return False
 
 
-
-line1 = (0, 10), (100, 130)
-print(is_vertical(line1))  # False
-print(is_horizontal(line1))  # False
-print(is_degenerated(line1))  # False
-print(is_inclined(line1))  # True
-line2 = (42, 1), (42, 2)
-print(is_vertical(line2))  # True
-line3 = (100, 50), (200, 50)
-print(is_horizontal(line3))  # True
+line_1 = (0, 10), (100, 130)
+print(is_vertical(line_1))  # False
+print(is_horizontal(line_1))  # False
+print(is_degenerated(line_1))  # False
+print(is_inclined(line_1))  # True
+line_2 = (42, 1), (42, 2)
+print(is_vertical(((15, 5), (15, -5))))  # True
+print(is_vertical(((5, 15), (-5, 15))))  # True
+print(is_vertical(((42, 100), (42, 100))))  # False
+line_3 = (100, 50), (200, 50)
+print(is_horizontal(line_3))  # True

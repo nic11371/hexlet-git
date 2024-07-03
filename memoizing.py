@@ -15,7 +15,6 @@ def memoizing(max_remember):
             cache[number] = calculation
             if len(cache) > max_remember:
                 cache.popitem(last=False)
-                cache[number] = calculation
             return calculation
         return wrapper
     return memoized

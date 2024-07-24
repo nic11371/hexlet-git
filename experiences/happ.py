@@ -17,7 +17,5 @@ def is_happy_number(num):
     return False
 
 
-
-
 # print(sum_of_square_digits(23))
 print(is_happy_number(13))

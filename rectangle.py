@@ -35,18 +35,18 @@ def get_start_point(point):
 
 
 def get_width(point):
-    return point[1]
+    return {'x': get_x(point[0]) + point[1], 'y': get_y(point[0])}
 
 
 def get_height(point):
-    return point[2]
+    return {'x': get_x(point[0]), 'y': get_y(point[0]) - point[2]}
 
 
 def contains_origin(rect):
     point_1 = get_start_point(rect)
-    point_2 = get_x(point_1) + get_width(rect)
-    point_3 = get_x(point_1) + get_width(rect) + get_height(rect)
-    point_4 = get_y(point_1) + get_height(rect)
+    point_2 = get_width(rect)
+    point_3 = {'x': get_x(get_width(rect)), 'y': get_y(get_height(rect))}
+    point_4 = get_height(rect)
     quad_1 = get_quadrant(point_1)
     quad_2 = get_quadrant(point_2)
     quad_3 = get_quadrant(point_3)
@@ -60,6 +60,8 @@ p = make_decart_point(0, 1)
 rectangle = make_rectangle(p, 4, 5)
 print(rectangle)
 print(get_start_point(rectangle))
+print(get_width(rectangle))
+print(get_height(rectangle))
 print(contains_origin(rectangle))  # False
 
 rectangle2 = make_rectangle(make_decart_point(-4, 3), 5, 4)

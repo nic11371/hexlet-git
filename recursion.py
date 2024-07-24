@@ -1,22 +1,23 @@
-def length(list_):
-    if not list_:
+def length(n):
+    if not n:
         return 0
-    return 1 + length(list_[1:])
+    _, *tail = n
+    return 1 + length(tail)
 
 
 def reverse_range(begin, end):
-    if end == begin:
-        return [end]
+    if begin == end:
+        return [begin]
     return [end] + reverse_range(begin, end - 1)
 
 
-def filter_positive(n):
-    if not n:
-        return n
-    if n[0] <= 0:
-        return filter_positive(n[1:])
-    else:
-        return [n[0]] + filter_positive(n[1:])
+def filter_positive(arr):
+    if not arr:
+        return []
+    head, *tail = arr
+    if head > 0:
+        return [head] + filter_positive(tail)
+    return filter_positive(tail)
 
 
 print(length([1, 2, 3]))  # 3

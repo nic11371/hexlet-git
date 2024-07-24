@@ -44,21 +44,23 @@ def get_height(point):
 
 def contains_origin(rect):
     point_1 = get_start_point(rect)
-    point_2 = get_start_point(rect) + get_width(rect)
-    point_3 = get_start_point(rect) + get_width(rect) + get_height(rect)
-    point_4 = get_start_point(rect) + get_height(rect)
+    point_2 = get_x(point_1) + get_width(rect)
+    point_3 = get_x(point_1) + get_width(rect) + get_height(rect)
+    point_4 = get_y(point_1) + get_height(rect)
     quad_1 = get_quadrant(point_1)
     quad_2 = get_quadrant(point_2)
     quad_3 = get_quadrant(point_3)
     quad_4 = get_quadrant(point_4)
-    # if quad_1 != quad_2
+    if quad_1 != quad_2 != quad_3 != quad_4:
+        return True
+    return False
 
 
 p = make_decart_point(0, 1)
 rectangle = make_rectangle(p, 4, 5)
 print(rectangle)
 print(get_start_point(rectangle))
-# contains_origin(rectangle)  # False
+print(contains_origin(rectangle))  # False
 
-# rectangle2 = make_rectangle(make_decart_point(-4, 3), 5, 4)
-# contains_origin(rectangle2)  # True
+rectangle2 = make_rectangle(make_decart_point(-4, 3), 5, 4)
+print(contains_origin(rectangle2))  # True

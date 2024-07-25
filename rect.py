@@ -27,31 +27,31 @@ def get_quadrant(point):
 
 
 def make_rectangle(point, width, height):
-    return point, width, height
+    return {'point': point, 'width': width, 'height': height}
 
 
 def get_start_point(point):
-    return point[0]
+    return point['point']
 
 
 def get_width(point):
-    return {'x': get_x(point[0]) + point[1], 'y': get_y(point[0])}
+    return point['width']
 
 
 def get_height(point):
-    return {'x': get_x(point[0]), 'y': get_y(point[0]) - point[2]}
+    return point['height']
 
 
 def contains_origin(rect):
     point_1 = get_start_point(rect)
-    point_2 = get_width(rect)
-    point_3 = {'x': get_x(get_width(rect)), 'y': get_y(get_height(rect))}
-    point_4 = get_height(rect)
+    point_2 = make_decart_point(
+            get_x(point_1),
+            get_y(point_1) - get_height(rect))
     quad_1 = get_quadrant(point_1)
     quad_2 = get_quadrant(point_2)
-    quad_3 = get_quadrant(point_3)
-    quad_4 = get_quadrant(point_4)
-    if quad_1 != quad_2 != quad_3 != quad_4:
+    if quad_1 != quad_2:
+        if quad_1 is None or quad_2 is None:
+            return False
         return True
     return False
 

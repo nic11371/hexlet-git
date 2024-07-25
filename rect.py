@@ -45,10 +45,11 @@ def get_height(point):
 def contains_origin(rect):
     point_1 = get_start_point(rect)
     point_2 = make_decart_point(
-            get_x(point_1),
+            get_x(point_1) + get_width(rect),
             get_y(point_1) - get_height(rect))
     quad_1 = get_quadrant(point_1)
     quad_2 = get_quadrant(point_2)
+    # return quad_1 == 2 and quad_2 == 4
     if quad_1 != quad_2:
         if quad_1 is None or quad_2 is None:
             return False

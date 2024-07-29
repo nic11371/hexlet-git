@@ -1,8 +1,9 @@
 import math
 
 
-def make(numer, denominator):
-    return {'numer': numer, 'denominator': denominator}
+def make(numer, denom):
+    normalize = math.gcd(numer, denom)
+    return {'numer': int(numer / normalize), 'denom': int(denom / normalize)}
 
 
 def get_numer(rat):
@@ -10,12 +11,21 @@ def get_numer(rat):
 
 
 def get_denom(rat):
-    return rat['denominator']
+    return rat['denom']
 
 
-def add(rat_1, rat_2):
-    gcd_ = math.gcd(get_denom(rat_1), get_denom(rat_2))
-    return gcd_
+def add(r1, r2):
+    return make(
+        get_numer(r1) * get_denom(r2) + get_denom(r1) * get_numer(r2),
+        get_denom(r1) * get_denom(r2)
+    )
+
+
+def sub(r1, r2):
+    return make(
+        get_numer(r1) * get_denom(r2) - get_denom(r1) * get_numer(r2),
+        get_denom(r1) * get_denom(r2)
+    )
 
 
 def to_str(rat):
@@ -27,7 +37,6 @@ get_numer(rat1)  # 1
 get_denom(rat1)  # 3
 rat2 = make(10, 3)
 rat3 = add(rat1, rat2)
-print(rat3)
-# to_str(rat3)  # 11/3
-# rat4 = sub(rat1, rat2)
-# to_str(rat4)  # -3/1
+print(to_str(rat3))  # 11/3
+rat4 = sub(rat1, rat2)
+print(to_str(rat4))  # -3/1

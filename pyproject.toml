@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "hexlet-git"
+version = "0.1.0"
+description = ""
+authors = ["nic11371 <nic11371@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+hexlet-immutable-fs-trees = {git = "git@github.com:hexlet-components/python-immutable-fs-trees.git"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+

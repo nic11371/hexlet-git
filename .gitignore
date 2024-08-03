@@ -3,3 +3,5 @@
 =======
 INFO.md
 >>>>>>> 54c772d3ddc42d5a6b27b5e3c06d877305c326b4
+__pycache__/
+dist/

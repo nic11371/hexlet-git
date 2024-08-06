@@ -8,7 +8,7 @@ def downcase_file_names(node):
     if is_file(node):
         return mkfile(name.lower(), new_meta)
     children = get_children(node)
-    new_child = list(map(lambda child: downcase_file_names(child), children))
+    new_child = list(map(downcase_file_names, children))
     new_tree = mkdir(name, new_child, new_meta)
     return new_tree
 

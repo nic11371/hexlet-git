@@ -8,7 +8,7 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
-hexlet-immutable-fs-trees = {git = "git@github.com:hexlet-components/python-immutable-fs-trees.git"}
+hexlet-immutable-fs-trees = {git = "https://github.com/hexlet-components/python-immutable-fs-trees.git"}
 
 
 [build-system]

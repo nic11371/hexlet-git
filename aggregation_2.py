@@ -1,4 +1,4 @@
-[
+tree = [
   {
     "title": "Chapter 1: Sorting Spells",
     "chapters": [
@@ -107,10 +107,15 @@
 
 
 def solution(book):
-    title = map(lambda child: child['title'], book)
-    chapters = map(lambda child: child['chapters'], book)
-    if title:
-        return list(title, chapters)
-    title_chapters = list(map(solution, book))
+    title = []
+    chapters = []
+    for i in book:
+        title.append(i['title'])
+        chapters.append(i['chapters'])
+    if chapters[0]:
+        return chapters[0]
+    return solution(chapters[0])
 
-    return title_chapters
+
+
+print(solution(tree))

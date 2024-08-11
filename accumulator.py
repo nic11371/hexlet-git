@@ -7,13 +7,13 @@ def find_files_by_name(tree, sub):
     def walk(node, ancestry):
         name = get_name(node)
         children = get_children(node)
+        ancestry = os.path.join(ancestry, name)
         if sub in name and is_file(node):
-            return os.path.join(ancestry, name)
+            return ancestry
         if not name.find(sub) and is_file(node):
             return []
-        # file_paths = filter(is_file, children)
         common_path = list(map(
-            lambda child: walk(child, ancestry + name), children
+            lambda child: walk(child, ancestry), children
         ))
         return flatten(common_path)
     return walk(tree, '')

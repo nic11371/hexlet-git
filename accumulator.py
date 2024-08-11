@@ -1,4 +1,4 @@
-from hexlet.fs import mkdir, mkfile, flatten, get_children, get_name, is_file, is_directory
+from hexlet.fs import mkdir, mkfile, flatten, get_children, get_name, is_file
 import os
 
 
@@ -7,14 +7,16 @@ def find_files_by_name(tree, sub):
     def walk(node, ancestry):
         name = get_name(node)
         children = get_children(node)
-        if name.find(sub) and is_file(node):
-            return name
-        file_paths = filter(is_directory, children)
-        common_path = map(
-            lambda child: walk(child, os.path.join(ancestry, name)), file_paths
-        )
+        if sub in name and is_file(node):
+            return os.path.join(ancestry, name)
+        if not name.find(sub) and is_file(node):
+            return []
+        # file_paths = filter(is_file, children)
+        common_path = list(map(
+            lambda child: walk(child, ancestry + name), children
+        ))
         return flatten(common_path)
-    return walk(tree, sub)
+    return walk(tree, '')
 
 
 tree = mkdir('/', [

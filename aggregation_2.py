@@ -117,5 +117,4 @@ def solution(book):
     return solution(chapters[0])
 
 
-
 print(solution(tree))

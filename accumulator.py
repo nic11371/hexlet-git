@@ -8,6 +8,7 @@ def find_files_by_name(tree, sub):
         name = get_name(node)
         children = get_children(node)
         ancestry = os.path.join(ancestry, name)
+
         if sub in name and is_file(node):
             return ancestry
         if not name.find(sub) and is_file(node):

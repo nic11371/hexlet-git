@@ -5,10 +5,9 @@ def convert(tree):
         for item in node:
             child = item[1]
             key = item[0]
+            dictionary[key] = child
             if isinstance(child, list):
                 return walk(child)
-            else:
-                dictionary[key] = child
     walk(tree)
     return dictionary
 

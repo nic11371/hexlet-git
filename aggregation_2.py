@@ -107,14 +107,13 @@ tree = [
 
 
 def solution(book):
-    title = []
-    chapters = []
-    for i in book:
-        title.append(i['title'])
-        chapters.append(i['chapters'])
-    if chapters[0]:
-        return chapters[0]
-    return solution(chapters[0])
+    title = book['title']
+    chapters = book['chapters']
+    return title
+        # chapters.append(i['chapters'])
+    # if chapters[0]:
+    #     return chapters[0]
+    # return solution(chapters[0])
 
 
 print(solution(tree))

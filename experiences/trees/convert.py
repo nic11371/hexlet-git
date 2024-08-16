@@ -2,13 +2,15 @@ def convert(tree):
     dictionary = {}
 
     def walk(node):
-        for item in node:
-            child = item[1]
-            key = item[0]
-            dictionary[key] = child
-            if isinstance(child, list):
-                return walk(child)
-    walk(tree)
+        key, child = node
+        dictionary[key] = child
+        if isinstance(child, list):
+            return key, convert(child)
+        return key, child
+
+    for item in tree:
+        key, value = walk(item)
+        dictionary[key] = value
     return dictionary
 
 

@@ -106,19 +106,21 @@ tree = [
 ]
 
 
-def solution(book):
+def solution(book, depth=0):
     collection = ''
 
     def walk(node):
         keys = node['title']
         chapters = node.get('chapters')
-        if isinstance(chapters, list):
-            return keys, solution(chapters)
-        return "*" + keys, chapters
+        if chapters is None and depth == 1:
+            return keys, chapters
+        if chapters is None:
+            return '*' + ' ' + keys, chapters
+        return keys, solution(chapters, depth + 1)
 
     for item in book:
         key, value = walk(item)
-        collection += f"\n{key} {value if value else ""}"
+        collection += f'''\n{'*' + ' ' + key if depth >= 1 else key}{value if value else ''}'''
     return collection
 
 

@@ -107,7 +107,7 @@ tree = [
 
 
 def solution(book, depth=0):
-    collection = ''
+    collection = []
 
     def walk(node):
         keys = node['title']
@@ -120,8 +120,12 @@ def solution(book, depth=0):
 
     for item in book:
         key, value = walk(item)
-        collection += f'''\n{'*' + ' ' + key if depth >= 1 else key}{value if value else ''}'''
-    return collection
+        collection.append(key)
+        if value:
+            collection.append(value)
+        # collection += f'''\n{'*' + ' ' + key if depth >= 1 else key}{value if value else ''}'''
+        collections = [x for y in collection for x in y]
+    return ''.join(collections)
 
 
 print(solution(tree))

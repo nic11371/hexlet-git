@@ -9,13 +9,13 @@ def stringify(data, div=" ", count=1, depth=0):
     def walk(node):
         key, value = node
         if isinstance(value, dict):
-            return key, stringify(value, depth + 1)
+            return key, stringify(value, div, count, depth + 1)
         return key, str(value)
 
     for items in data.items():
         key, value = walk(items)
-        string += f"\n{key}: {value}"
-        result = list(itertools.chain("{", string, "\n" + ' ', "}"))
+        string += f"\n{div * count if depth > 0 else ''}{div * count}{key}: {value}"
+        result = list(itertools.chain("{", string, "\n", {div * count if depth > 0 else ''}, "}"))
     return ''.join(result)
 
 # string = list(itertools.chain("{", ['hello'], ['world' + '\n' + "}"]))
@@ -39,7 +39,7 @@ print(stringify(data))  # то же самое что stringify(data, ' ', 1)
 #  }
 # }
 
-# stringify(data, '|-', 2)
+print(stringify(data, '|-', 2))
 # # символ, переданный вторым аргументом повторяется столько раз,
 # сколько указано третьим аргументом
 # {

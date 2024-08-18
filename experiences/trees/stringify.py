@@ -1,23 +1,22 @@
-# import itertools
+import itertools
 
 
-def stringify(data, div=" ", count=1):
+def stringify(data, div=" ", count=1, depth=0):
     if isinstance(data, str) or isinstance(data, int):
         return str(data)
     string = ''
 
-    def walk(node, depth):
+    def walk(node):
         key, value = node
         if isinstance(value, dict):
-            return key, stringify(value)
+            return key, stringify(value, depth + 1)
         return key, str(value)
 
-    _count = 0
-
     for items in data.items():
-        key, value = walk(items, _count + 1)
+        key, value = walk(items)
         string += f"\n{key}: {value}"
-    return string
+        result = list(itertools.chain("{", string, "\n" + ' ', "}"))
+    return ''.join(result)
 
 # string = list(itertools.chain("{", ['hello'], ['world' + '\n' + "}"]))
 # print('\n'.join(string))

@@ -14,20 +14,18 @@ def stringify(data, div=" ", count=1, depth=0):
 
     for items in data.items():
         key, value = walk(items)
-        string += f"\n{div * count if depth > 0 else ''}{div * count}{key}: {value}"
-        result = list(itertools.chain("{", string, "\n", {div * count if depth > 0 else ''}, "}"))
+        string += f'''\n{div * count * depth}{div * count}{key}: {value}'''
+        result = list(
+            itertools.chain("{", string, "\n", div * depth, "}"))
     return ''.join(result)
-
-# string = list(itertools.chain("{", ['hello'], ['world' + '\n' + "}"]))
-# print('\n'.join(string))
 
 
 print(stringify('hello'))
-# # hello
-# print(stringify(True))
-# # True
-# print(stringify(5))
-# 5
+# hello
+print(stringify(True))
+# True
+print(stringify(5))
+5
 
 data = {"hello": "world", "is": True, "nested": {"count": 5}}
 print(stringify(data))  # то же самое что stringify(data, ' ', 1)

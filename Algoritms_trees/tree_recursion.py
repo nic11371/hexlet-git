@@ -114,11 +114,13 @@ def solution(book):
 
         for key in node:
             title = key.get('title')
-            chapters = key.get('chapters') or []
-            lists.append(f'''{mark}{title}{walk(chapters, depth + 1)}''')
-        return '\n'.join(lists)
+            chapters = key.get('chapters')
+            lists.append(f"{mark}{title}")
+            if chapters:
+                lists.extend(walk(chapters, depth + 1))
+        return lists
 
-    return walk(book, 0)
+    return "\n".join(walk(book, 0))
 
 
 print(solution(tree))

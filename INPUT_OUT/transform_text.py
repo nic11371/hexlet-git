@@ -2,14 +2,19 @@ def transform(input_file, output_file, rules):
     min_length = rules['word_min_len']
     censor = rules['censored_words']
     capital = rules['capital_letters']
-    input_file = open(input_file, 'r')
-    for line in input_file:
-        line = line.split()
-    
-    f.writelines()
-    return f
+    input = open(input_file)
+    file = input.read()
+    # for line in file:
+    #     line = line.split()
+    #     print(line)
+    words = file.split()
+    output = open(output_file, 'w')
 
-# word = 'python was language'
+    output.writelines(word_min_len(min_length, words))
+    output.writelines(censored_words(censor, words))
+    output.writelines(capital_letters(capital, words))
+    input.close()
+    output.close()
 
 
 def word_min_len(rules, lines):
@@ -35,7 +40,6 @@ rules = {
     'capital_letters': ['l', 'a'],
 }
 
-# print(capital_letters(rules, word))
 
-print(transform('python.txt', 'out.txt', rules=rules))
-print(open('out.txt').read())
+print(transform('./INPUT_OUT/2.txt', './INPUT_OUT/output_file.txt', rules=rules))
+# print(open('./INPUT_OUT/out.txt').read())

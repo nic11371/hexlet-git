@@ -3,17 +3,14 @@ def transform(input_file, output_file, rules):
     censor = rules['censored_words']
     capital = rules['capital_letters']
     input = open(input_file)
-    file = input.read()
-    # for line in file:
-    #     line = line.split()
-    #     print(line)
-    words = file.split()
     output = open(output_file, 'w')
-    output.writelines(word_min_len(min_length, words))
-    output.writelines(censored_words(censor, words))
-    output.writelines(capital_letters(capital, words))
-    input.close()
-    output.close()
+    for line in input:
+        line = line.split()
+        output.writelines(word_min_len(min_length, line))
+    # words = (censored_words(censor, words)).split()
+    # output.writelines(capital_letters(capital, words))
+    # input.close()
+    # output.close()
 
 
 def word_min_len(rules, lines):

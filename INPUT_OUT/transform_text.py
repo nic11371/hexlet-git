@@ -6,34 +6,33 @@ def transform(input_file, output_file, rules):
     output = open(output_file, 'w')
     for line in input:
         line = line.split()
-        output.writelines(word_min_len(min_length, line))
-    # words = (censored_words(censor, words)).split()
-    # output.writelines(capital_letters(capital, words))
-    # input.close()
-    # output.close()
+        line = word_min_len(min_length, line)
+        line = censored_words(censor, line)
+        line = capital_letters(capital, line)
+        if line:
+            output.writelines(f"{' '.join(line)}\n")
+    input.close()
+    output.close()
 
 
 def word_min_len(rules, lines):
-    new_string = list(filter(lambda word: len(word) >= rules, lines))
-    return ' '.join(new_string)
+    return list(filter(lambda word: len(word) >= rules, lines))
 
 
 def censored_words(rules, lines):
-    new_string = list(filter(lambda word: word not in rules, lines))
-    return ' '.join(new_string)
+    return list(filter(lambda word: word.lower() not in rules, lines))
 
 
 def capital_letters(rules, lines):
-    new_string = list(map(
+    return list(map(
         lambda word: word[0].upper() + word[1:]
         if word[0] in rules else word, lines))
-    return ' '.join(new_string)
 
 
 rules = {
     'word_min_len': 3,
-    'censored_words': ['language', 'show'],
-    'capital_letters': ['l', 'a'],
+    'censored_words': ['ugly', 'than'],
+    'capital_letters': ['b', 'a'],
 }
 
 

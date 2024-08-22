@@ -1,31 +1,17 @@
-def solution(item):
-    left = 0
-    right = len(item) - 1
-    length = right - left + 1
-
-    while True:
-        pivot = item[left]
-        if length < 2:
-            return
-        
-        while items[right] > pivot:
-            right -= 1
-        while items[left] < pivot:
-            left += 1
-        if left >= right:
-            return right + 1
-        item[left], item[right] = item[right], item[left]
-        left += 1
-        right -= 1
-        split_index = partition(items, left, right, pivot)
-        sort(items, left, split_index - 1)
-        sort(items, split_index, right)
+def solution(items, dir='asc'):
+    if len(items) < 2:
+        return items
+    else:
+        pivot = items[0]
+        left = [i for i in items[1:] if i <= pivot]
+        right = [i for i in items[1:] if i > pivot]
+        if dir == 'asc':
+            return solution(left) + [pivot] + solution(right)
+        if dir == 'desk':
+            return solution(right) + [pivot] + solution(left)
 
 
-
-
-
-items = [10, 20, 0, -1]
+items = [10, 3, 20, 1, 0, -1, 20, 3, 1, 3]
 
 print(solution(items))  # [-1, 0, 10, 20]
 # print(solution([]))  # []

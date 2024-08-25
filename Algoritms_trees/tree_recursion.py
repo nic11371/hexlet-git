@@ -1,21 +1,21 @@
 tree = [
-#   {
-#     "title": "Chapter 1: Sorting Spells",
-#     "chapters": [
-#       {
-#         "title": "1.1 Bubble Sort"
-#       },
-#       {
-#         "title": "1.2 Insertion Sort"
-#       },
-#       {
-#         "title": "1.3 Merge Sort"
-#       },
-#       {
-#         "title": "1.4 Quick Sort"
-#       }
-#     ]
-#   },
+  {
+    "title": "Chapter 1: Sorting Spells",
+    "chapters": [
+      {
+        "title": "1.1 Bubble Sort"
+      },
+      {
+        "title": "1.2 Insertion Sort"
+      },
+      {
+        "title": "1.3 Merge Sort"
+      },
+      {
+        "title": "1.4 Quick Sort"
+      }
+    ]
+  },
   {
     "title": "Chapter 2: Graphical Charms",
     "chapters": [
@@ -108,20 +108,17 @@ tree = [
 
 def solution(book):
     collection = ''
-    # depth = 0
 
     def walk(node):
         keys = node['title']
         chapters = node.get('chapters')
         if isinstance(chapters, list):
             return keys, solution(chapters)
-        return keys, chapters
+        return "*" + keys, chapters
 
     for item in book:
-        # nonlocal depth
-        # depth += 1
         key, value = walk(item)
-        collection += f'''\n{key}{value if value else ''}'''
+        collection += f"\n{key} {value if value else ""}"
     return collection
 
 

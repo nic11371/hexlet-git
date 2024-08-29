@@ -107,20 +107,19 @@ tree = [
 
 
 def solution(book):
+    collection = ''
 
-    def walk(node, depth):
-        lists = []
-        mark = depth * ('*' + " ")
+    def walk(node):
+        keys = node['title']
+        chapters = node.get('chapters')
+        if isinstance(chapters, list):
+            return keys, solution(chapters)
+        return "*" + keys, chapters
 
-        for key in node:
-            title = key.get('title')
-            chapters = key.get('chapters')
-            lists.append(f"{mark}{title}")
-            if chapters:
-                lists.extend(walk(chapters, depth + 1))
-        return lists
-
-    return "\n".join(walk(book, 0))
+    for item in book:
+        key, value = walk(item)
+        collection += f"\n{key} {value if value else ""}"
+    return collection
 
 
 print(solution(tree))

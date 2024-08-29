@@ -3,9 +3,22 @@ Hello from Hexlet
 Hello from Hexlet
    Python also is a snake
 Hello from Hexlet
-   Python also is a snake
-   And also a comedy show
-Hello from Hexlet
-   Python also is a snake
-   And also a comedy show
-   Use context managers
+====
+Hello World
+<<<file2<<<
+Python is awesome
+>>>file1>>>
+Python also is a snake
+====
+And also a comedy show
+<<<file2<<<
+>>>file1>>>
+And also a comedy show
+====
+Python also is a snake
+<<<file2<<<
+>>>file1>>>
+Use context managers
+====
+Use Force
+<<<file2<<<

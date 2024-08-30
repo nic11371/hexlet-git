@@ -2,7 +2,8 @@
 Hello from Hexlet
 =====
 Hello World
-<<<file2<<<Python is awesome
+<<<file2<<<
+Python is awesome
 >>>file1>>>
 Python also is a snake
 And also a comedy show

@@ -1,14 +1,14 @@
 class HourClock:
-    def __init__(self, hours=0):
-        self.hours = hours
+    def __init__(self, position=0):
+        self.position = position
 
     @property
-    def get_hours(self):
-        return self.hours
-    
-    @get_hours.setter
-    def set_hours(self, new_hour):
-        self.hours = new_hour
+    def hours(self):
+        return self.position
+
+    @hours.setter
+    def hours(self, new):
+        self.position = new % 12
 
 
 clock = HourClock()

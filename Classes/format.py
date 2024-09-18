@@ -15,6 +15,9 @@ def format(data):
         .map_(lambda row: {k: sorted(v) for k, v in row.items()}) \
         .sort_by(lambda row: list(row.keys())).all()
 
+# def _normalise(row):
+#     return {'name': row['name'].lower().strip(), 'country': row['country'].lower().strip()}
+
 
 raw = [{'name': 'istambul', 'country': 'turkey'},
        {'name': 'Moscow ', 'country': ' Russia'},

@@ -1,26 +1,32 @@
-from datetime import date
+import datetime
 
 
 class Booking:
     def __init__(self):
-        self.mem = set()
+        self.mem = []
 
     def book(self, start, stop):
+        start_b = datetime.datetime.strptime(start, "%Y-%m-%d")
+        stop_b = datetime.datetime.strptime(stop, "%Y-%m-%d")
+
+        range = self.generate(start_b, stop_b)
         
-        start_d = start.split('-')
-        stop_d = stop.split('-')
-        start_j = ''.join(start_d)
-        stop_j = ''.join(stop_d)
-        start_b = date(start_j)
-        stop_b = date(stop_j)
-        # book_d = stop_d - start_d
-        if start_b not in range(start_b, stop_b) and stop_d not in range(start_b, stop_b):
-            self.mem.add(start_b)
-            self.mem.add(stop_b)
-            print(self.mem)
+        if not self.mem:
+            self.mem.append(range)
             return True
-        return False
         
+        diff = list(set(range) & set(self.mem[0]))
+        
+        if len(diff) > 0:
+            return False
+        else:
+            self.mem.append(range)
+            return True
+
+    def generate(self, start, stop):
+        days = stop - start
+        date_generated = [start + datetime.timedelta(days=x) for x in range(0, (stop-start).days + 1)]
+        return date_generated
 
 
 booking = Booking()

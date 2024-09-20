@@ -10,6 +10,8 @@ class Booking:
         stop_b = datetime.datetime.strptime(stop, "%Y-%m-%d")
 
         range = self.generate(start_b, stop_b)
+        first = range[0]
+        last = len(range) - 1
         
         if not self.mem:
             self.mem.append(range)
@@ -17,11 +19,12 @@ class Booking:
         
         diff = list(set(range) & set(self.mem[0]))
         
-        if len(diff) > 0:
-            return False
-        else:
-            self.mem.append(range)
+        for book in self.mem:
+            last_date = len(book) - 1
+            if book[1:last_date] in range[1:last]:
+                return False
             return True
+
 
     def generate(self, start, stop):
         days = stop - start

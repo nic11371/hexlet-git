@@ -1,4 +1,4 @@
-import datetime
+from datetime import date
 
 
 class Booking:
@@ -6,30 +6,25 @@ class Booking:
         self.mem = []
 
     def book(self, start, stop):
-        start_b = datetime.datetime.strptime(start, "%Y-%m-%d")
-        stop_b = datetime.datetime.strptime(stop, "%Y-%m-%d")
-
-        range = self.generate(start_b, stop_b)
-        first = range[0]
-        last = len(range) - 1
+        start_b = date.fromisoformat(start)
+        stop_b = date.fromisoformat(stop)
         
+        range_book = (start_b, stop_b)
+
+        if start_b == stop_b or start_b > stop_b:
+            return False
+
         if not self.mem:
-            self.mem.append(range)
+            self.mem.append(range_book)
             return True
         
-        diff = list(set(range) & set(self.mem[0]))
-        
-        for book in self.mem:
-            last_date = len(book) - 1
-            if book[1:last_date] in range[1:last]:
+        for elem in self.mem:
+            if elem[0] < start_b < elem[1]:
                 return False
-            return True
-
-
-    def generate(self, start, stop):
-        days = stop - start
-        date_generated = [start + datetime.timedelta(days=x) for x in range(0, (stop-start).days + 1)]
-        return date_generated
+            elif elem[0] < stop_b < elem[1]:
+                return False
+            else:
+                return True
 
 
 booking = Booking()

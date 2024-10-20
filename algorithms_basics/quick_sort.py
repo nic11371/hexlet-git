@@ -6,7 +6,7 @@ def solution(items, dir='asc'):
         left = [i for i in items[1:] if i <= pivot]
         right = [i for i in items[1:] if i > pivot]
         if dir == 'desk':
-            return solution(right, dir) + [pivot] + solution(left, dir)
+            return solution(left, dir) + [pivot] + solution(right, dir)
         return solution(right) + [pivot] + solution(left)
 
 

@@ -23,6 +23,7 @@ def solution(arr):
     reverse = LinkedList.to_array(linked_list)
     return reverse
 
+
 items = [[10, 20], 0, -1, ['hey']]
 
 print(solution(items))  # [['hey'], -1, 0, [10, 20]]

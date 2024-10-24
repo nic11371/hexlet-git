@@ -29,6 +29,7 @@ class LinkedList:
         # Присоеденяем новый узел к концу, делаем его хвостом
         self.tail.next = new_node
         self.tail = new_node
+
         return self
 
     def delete(self, value):  # noqa: C901

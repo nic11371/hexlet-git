@@ -1,14 +1,14 @@
 import os
 import sys
-from algorithms_basics.Linked_lists.Linked_list import LinkedList
-from algorithms_basics.Linked_lists.helpers import get_linked_list_from_array
+from algorithms_basics.Doubly_Linked_lists.Double_Linked_list import DoubleLinkedList
+from algorithms_basics.Doubly_Linked_lists.helpers import get_double_linked_list_from_array
 
 sys.path.append(os.path.abspath('/usr/src/app/'))
 
 
 def solution(arr):
-    linked_list = get_linked_list_from_array(arr)
-    reverse = LinkedList()
+    linked_list = get_double_linked_list_from_array(arr)
+    reverse = DoubleLinkedList()
 
     if not linked_list.head:
         return reverse.to_array()
@@ -24,5 +24,5 @@ def solution(arr):
 
 items = [[10, 20], 0, -1, ['hey']]
 
-print(solution(items))  # [['hey'], -1, 0, [10, 20]]
+print(solution(items))  # [0, [10, 20], -1, ['hey']]
 print(solution([]))  # []

@@ -13,16 +13,26 @@ def solution(arr):
     if not linked_list.head:
         return reverse.to_array()
 
-    reverse.prepend(linked_list.head.value)
-    next_node = linked_list.head.next
-
-    while next_node:
-        reverse.prepend(next_node.value)
-        next_node = next_node.next
+    first = reverse.append(linked_list.head.value)
+    first_next = linked_list.head.next
+    if first_next.next is not None:
+        second_next = first_next.next
+    # third = second_next.value
+    first.head.previous = first_next
+    first.head.next = first_next.next
+    first_next.next = first.head
+    second = reverse.prepend(first_next.value)
+    first_next.previous = None
 
     return reverse.to_array()
 
-items = [[10, 20], 0, -1, ['hey']]
+items = [[1, 2], [3, [4, 5]], 1, 6, 7]
+items2 = [1, 2, 3, 4, 5]
+items3 = [[1, None], [3, [4, 5]]]
+items4 = [1, 2, 1, 1, 1, 2]
 
-print(solution(items))  # [0, [10, 20], -1, ['hey']]
+print(solution(items))  # [[3, [4, 5]], [1, 2], 1, 6, 7]
+print(solution(items2)) # [2, 1, 3, 4, 5]
+print(solution(items3)) # [[3, [4, 5]], [1, None]]
+print(solution(items4)) # [2, 1, 1, 1, 1, 2]
 print(solution([]))  # []

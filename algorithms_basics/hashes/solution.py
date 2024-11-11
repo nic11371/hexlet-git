@@ -22,7 +22,7 @@ def remove(hash, key):
         if record.next.value['key'] == key:
             removed = record.next.value['value']
             record.next = record.next.next
-            hash.count =- 1
+            hash.count -= 1
         else:
             record = record.next
 
@@ -38,7 +38,7 @@ def remove(hash, key):
 #     for key_, value in map.items():
 #         hash.set(key_, value)
 #
-#     return remove(hash, key)
+#     return remove(hash, key)git commit -m ''
 
 
 table = Hash()

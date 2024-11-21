@@ -1,31 +1,32 @@
 import os
 import sys
+from helpers import sorted_array_to_BST
 
 sys.path.append(os.path.abspath('/usr/src/app/'))
 
-from helpers import sorted_array_to_BST
-
 
 # BEGIN (write your solution here)
-def traverse(node):
-    if node is not None:
-        print(f"node = {node.value}")
-        traverse(node.left)
-        traverse(node.right)
-        return node.value
+def traverse(node, path=None, paths=None):
+    if node:
+        if path is None:
+            path = []
+        if paths is None:
+            paths = []
+        path.append(node.value)
+        traverse(node.left, path, paths)
+        traverse(node.right, path, paths)
+        if node.left is None and node.right is None:
+            paths.append(list(path))
+        return paths
 
 
 def solution(arr):
-    current_path = []
-    paths = []
+    if arr == []:
+        return []
     tree = sorted_array_to_BST(arr)
     current_node = traverse(tree)
-    if current_node:
-        current_path.append(current_node)
-        traverse(tree)
-    
-    paths.append(current_node) 
-    return paths
+    return current_node
+
 
 print(solution([1, 2, 3, 4, 5, 6, 7, 8, 9]))
 # END

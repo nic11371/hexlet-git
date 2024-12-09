@@ -21,9 +21,10 @@ def find_words(root, prefix):
         if char not in root.children:
             return []
         root = root.children[char]
-    walk(root, prefix_list)
+        prefix_list.append(root.key)
+    walk(root, prefix_list[:-1])
 
-    return found_words
+    return sorted(found_words)
 
 
 def solution(words, prefix):
@@ -31,42 +32,6 @@ def solution(words, prefix):
     return find_words(tree, prefix)
 
 
-print(solution(data, 'appre'))
+print(solution(data, 'appr'))
 
 # END
-
-
-    # def walk(node, word_list=None):
-    #     if word_list is None or word_list == []:
-    #         word_list = prefix_list + []
-    #     word_list.append(node.key)
-    #     if node.end:
-    #         found_words.append(''.join(word_list))
-    #         word_list.clear()
-    #     for w in node.children:
-    #         walk(node.children[w], word_list)
-    
-        # walk(root)
-
-# def find_words(root, prefix):
-#     found_words = []
-#     prefix_list = []
-
-#     def walk(node, word_list=None):
-#         if word_list is None or word_list == []:
-#             word_list = prefix_list + []
-#         word_list.append(node.key)
-#         if node.end:
-#             found_words.append(''.join(word_list))
-#             word_list.clear()
-#         for w in node.children:
-#             walk(node.children[w], word_list)
-
-#     for char in prefix:
-#         if char not in root.children:
-#             return []
-#         root = root.children[char]
-#         prefix_list.append(root.key)
-#     walk(root)
-
-#     return found_words

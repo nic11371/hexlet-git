@@ -7,24 +7,23 @@ sys.path.append(os.path.abspath('/usr/src/app/'))
 
 
 # BEGIN (write your solution here)
-def find_words(root, prefix, prefix_list=None, found_words=None):
-    if prefix_list is None:
-        prefix_list = []
-    if found_words is None:
-        found_words = []
-    if root.key is not None:
-        prefix_list.append(root.key)
-    for char_prefix in prefix:
-        if char_prefix not in root.children:
+def find_words(root, prefix):
+    found_words = []
+    prefix_list = []
+
+    def walk(node, word_list=None):
+        if node.end:
+            found_words.append(''.join(word_list + [node.key]))
+        for w in node.children:
+            walk(node.children[w],  word_list + [node.key])
+
+    for char in prefix:
+        if char not in root.children:
             return []
-        root = root.children[char_prefix]
-        prefix_list.append(root.key)
+        root = root.children[char]
+    walk(root, prefix_list)
 
-    d_2 = copy.deepcopy(d)
-    for key in root.children:
-        find_words(root.children[key], prefix, prefix_list)
-
-    return prefix_list
+    return found_words
 
 
 def solution(words, prefix):

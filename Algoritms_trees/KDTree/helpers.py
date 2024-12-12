@@ -1,4 +1,4 @@
-from Algoritms_trees.KDTree.KDTree_node import KDTreeNode
+from KDTree_node import KDTreeNode
 
 
 def build_tree(points, depth, dimensions, parent):

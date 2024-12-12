@@ -1,6 +1,6 @@
 import os
 import sys
-# from fixtures.tree2 import dictionary as data
+from fixtures.tree2 import tree as data
 from helpers import ASTree
 
 
@@ -15,13 +15,22 @@ def find_values_in_range(root, min, max, found_range=None):
 
 
 def solution(items):
-    btree = ASTree.buildAST(items)
-    return btree
+    result = []
+    result.append(items['operator'])
+    if items['instructionType'] == 'unary':
+        result.append(solution(items['children']))
+    if items['instructionType'] == 'multiple':
+        intermediate = [solution(elem) for elem in items['children']]
+        result.append(intermediate)
+    if items['instructionType'] == 'argument':
+        return items['value']
+
+    return result
 
 
 structure = ['assign', ['a', ['sum', [['multiply', [5, 10]], ['sqrt', 6]]]]]
 ast = ASTree.buildAST(structure)
-print(solution(ast))
+print(solution(data))
 # => ['assign',['a',['sum',[['multiply',[5,10]],['sqrt',6]]]]]
 # print(solution(data, 30, 50))
 

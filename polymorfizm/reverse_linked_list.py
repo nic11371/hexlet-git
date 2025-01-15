@@ -26,6 +26,16 @@ def reverse(head, tail=None):
     return tail
 
 
+def reverse_two(linked_list):
+    reverse = None
+    current = linked_list
+
+    while current:
+        reverse = Node(current.get_value(), reverse)
+        current = current.get_next()
+    return reverse
+
+
 numbers = Node(1, Node(2, Node(3)))  # (1, 2, 3)
 reversed_numbers = reverse(numbers)  # (3, 2, 1)
 print(reversed_numbers)

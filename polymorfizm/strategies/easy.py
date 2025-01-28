@@ -2,9 +2,8 @@ class Easy:
     def __init__(self, field):
         self.field = field
 
-    def go(self):
-        for index, row in enumerate(self.field):
-            for i, item in enumerate(row):
+    def next_step(self):
+        for row_index, row in enumerate(self.field):
+            for col_index, item in enumerate(row):
                 if item is None:
-                    self.field[index][i] = 'computer'
-                    return self.field
+                    return 'computer', row_index, col_index

@@ -2,9 +2,8 @@ class Normal:
     def __init__(self, field):
         self.field = field
 
-    def go(self):
-        for index, row in enumerate(reversed(self.field)):
-            for i, item in enumerate(row):
+    def next_step(self):
+        for row_index in reversed(range(len(self.field))):
+            for col_index, item in enumerate(self.field[row_index]):
                 if item is None:
-                    self.field[index][i] = 'computer'
-                    return self.field
+                    return 'computer', row_index, col_index

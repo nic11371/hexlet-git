@@ -1,5 +1,5 @@
-from polymorfizm.strategies.easy import Easy
-from polymorfizm.strategies.normal import Normal
+from polymorfizm.strategies_pattern.easy import Easy
+from polymorfizm.strategies_pattern.normal import Normal
 
 
 class TicTacToe():

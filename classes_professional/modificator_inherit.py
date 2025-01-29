@@ -16,20 +16,19 @@ class HTMLElement:
         return _collection
 
     def __str__(self, data):
-        new_string = " ".join(data)
-        self.attributes['tag'] = new_string
+        return " ".join(data)
 
     def add_tag(self, tag_name):
         storage = self._storage()
         if tag_name not in storage:
             storage.append(tag_name)
-        self.__str__(storage)
+        self.attributes['tag'] = self.__str__(storage)
 
     def remove_tag(self, tag_name):
         storage = self._storage()
         if tag_name in storage:
             storage.remove(tag_name)
-        self.__str__(storage)
+        self.attributes['tag'] = self.__str__(storage)
 
     def toggle_tag(self, tag_name):
         storage = self._storage()
@@ -37,7 +36,7 @@ class HTMLElement:
             self.remove_tag(tag_name)
             return
         self.add_tag(tag_name)
-        return
+
     # END
 
 

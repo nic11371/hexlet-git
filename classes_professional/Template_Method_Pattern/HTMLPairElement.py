@@ -3,6 +3,9 @@ from HTMLElement import HTMLElement
 
 # BEGIN (write your solution here)
 class HTMLPairElement(HTMLElement):
+    def __init__(self, attributes=None):
+        super().__init__(attributes)
+        self.body = ""
 
     def get_text_content(self):
         return self.body

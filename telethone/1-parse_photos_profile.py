@@ -12,13 +12,13 @@ print(client.get_me())
 # client.disconnect()
 
 participants = client.get_participants('https://t.me/Parsinger_Telethon_Test')
-for i, user in enumerate(participants):
-    client.download_profile_photo(user, f'{i}', download_big=False)
-    print(user.id, user.first_name, user.last_name, user.phone)
+for i in participants:
+    for iter_photo in client.iter_profile_photos(i):
+        client.download_media(iter_photo, file='img/')
 
-def get_size(folder: str):
-    return sum(
-        [os.path.getsize(f"{folder}/{file}") for file in os.listdir(folder)]
-    )
+# def get_size(folder: str):
+#     return sum(
+#         [os.path.getsize(f"{folder}/{file}") for file in os.listdir(folder)]
+#     )
 
-get_size('C:/Users/melnikov.nn/Documents/phyton/Lessons/2-hexlet-git/telethone')
+# get_size('C:/Users/melnikov.nn/Documents/phyton/Lessons/2-hexlet-git/telethone')

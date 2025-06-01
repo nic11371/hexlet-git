@@ -3,7 +3,7 @@ import re
 # Для удобства полные наборы данных вшиты в задачу, вставлять их не нужно
 banned_words = ["bug", "error", "exception", "fail", "crash", "hang", "slow", "memory leak", "infinite loop",
                 "deadlock"]
-message = [
+messages = [
     {
         "message_id": 56691,
         "message": "У тебя есть опыт работы с Node.js?",
@@ -37,47 +37,25 @@ message = [
 ]
 
 
-async def check_message(mes):
-    text = mes.lower()
-    words = text.split(' ')
-    is_flag = False
-    await asyncio.sleep(1)
-    for i in range(len(words)):
-        word_clean = words[i].strip('.,!?;:"\'()[]{}')
-
-        for banned_word in banned_words:
-            if word_clean.lower() == banned_word.lower():
-                is_flag = True
-                words[i] = words[i].replace(word_clean, '***')
-                break
-    return ' '.join(words), is_flag
+def student(text):
+    if re.findall(f'\b{banned_words}\b', text, re.I):
+        return 'В сообщении есть запрещённое слово, сообщение скрыто'
+    return text
 
 
-async def check_role(message):
-    current_task = asyncio.current_task()
-    name = current_task.get_name()
-    mes = message.get("message")
-    msg, flag = await check_message(mes)
-    dictionary_roles = {
-        'admin': mes,
-        'moderator': msg,
-        'student': "В сообщении есть запрещённое слово, сообщение скрыто" if flag else msg,
-        'black_list_user': "Пользователь забанен, сообщение скрыто",
-        "None": "ERROR_USER_NONE"
+async def check_message(message):
+    roles = {
+        'admin': message['message'],
+        'moderator': re.sub(banned_words, '****', message['message']),
+        'student': student(message['message']),
+        'black_list_user': 'Пользователь забанен, сообщение скрыто',
+        None: 'ERROR_USER_NONE'
     }
-    await asyncio.sleep(1)
-    print(f"{name}: {dictionary_roles.get(name)}")
+    print(f'{message["role"]}: {roles[message["role"]]}')
 
 
 async def main():
-    tasks = []
-    for msg in message:
-        role = msg.get('role')
-        task = asyncio.create_task(check_role(msg), name=role)
-        tasks.append(task)
-    try:
-        await asyncio.gather(*tasks, return_exceptions=True)
-    except asyncio.CancelledError as e:
-        print(e)
+    await asyncio.gather(*map(check_message, messages))
+
 
 asyncio.run(main())

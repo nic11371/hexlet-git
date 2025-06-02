@@ -57,5 +57,4 @@ async def check_message(message):
 async def main():
     await asyncio.gather(*map(check_message, messages))
 
-
 asyncio.run(main())

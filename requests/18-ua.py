@@ -3,7 +3,7 @@ import json
 import random
 from fake_useragent import UserAgent
 
-with open('list.json', 'r', encoding='utf-8') as file:
+with open('requests/list.json', 'r', encoding='utf-8') as file:
     agent = json.load(file)
 
 
@@ -15,7 +15,7 @@ statuses = []
 
 for i in agent.get("user_agents"):
     headers = {
-        "User-Agent": fake,
+        "User-Agent": i,
     }
     response = requests.get(url, headers=headers, verify=False)
     response.encoding = 'utf-8'

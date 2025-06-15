@@ -23,7 +23,7 @@ categories = int([link['href'][5:6] for link in soup.find('div', class_='nav_men
 for category in range(1, categories + 1):
     for page in range(1, pagen + 1):
 
-        url = f'https://parsinger.ru/html/index1_page_{page}.html'
+        url = f'https://parsinger.ru/html/index{category}_page_{page}.html'
         response = requests.get(url, verify=False)
         response.encoding = 'utf-8'
         soup = BeautifulSoup(response.text, 'lxml')

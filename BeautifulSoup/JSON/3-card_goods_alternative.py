@@ -5,8 +5,9 @@ import json
 result_list = list()
 
 # ща мы сделаем так, чтобы код не зависил от кол-ва электроники, хоть 32, хоть 132
-rq = requests.get(url='https://parsinger.ru/html/index2_page_1.html') # идем на 1 страницу товара
+rq = requests.get(url='https://parsinger.ru/html/index1_page_1.html') # идем на 1 страницу товара
 syp = BeautifulSoup(rq.text, 'lxml') # суп
+categories = int([link['href'][5:6] for link in syp.find('div', class_='nav_menu').find_all('a')][-1])
 last_link = syp.find('div', class_='pagen').find_all('a')[-1]['href'] # тут мы узнали последнюю страницу товара - index3_page_4.html
 rq = requests.get(url='https://parsinger.ru/html/' + last_link) # идем на эту страницу
 syp = BeautifulSoup(rq.text, 'lxml') # суп
@@ -36,5 +37,5 @@ for page in range(1, amount + 1):
     saver['link'] = link
     result_list.append(saver)
 
-with open('mouses.json', 'w', encoding='utf-8') as file:
+with open('res4.json', 'w', encoding='utf-8') as file:
     json.dump(result_list, file, indent=4, ensure_ascii=False) # я еще на стадии изучения понял, что лучше сразу найти кол-во товара, а не писать 32, ведь надо быть готовым ко всему

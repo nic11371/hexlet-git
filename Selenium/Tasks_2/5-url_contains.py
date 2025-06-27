@@ -15,10 +15,10 @@ with webdriver.Chrome() as browser:
             contain = WebDriverWait(browser, 5).until(EC.url_contains("qLChv49"))
             check = browser.find_element(By.ID, "checkButton")
             check.click()
-            result = browser.find_element(By.ID, "password")
+            result = browser.find_element(By.TAG_NAME, "p")
             print(result.text)
             break
 
         except Exception:
-            browser.back()
+            pass
     time.sleep(10)

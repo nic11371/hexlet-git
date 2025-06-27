@@ -7,10 +7,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 with webdriver.Chrome() as browser:
     browser.get('https://parsinger.ru/selenium/5.9/6/index.html')
-    checkbox = WebDriverWait(browser, 30).until(EC.element_located_to_be_selected((By.ID, 'myCheckBox')))
-    if checkbox:
-        btn = browser.find_element(By.TAG_NAME, 'button')
-        btn.click()
+    checkbox = WebDriverWait(browser, 30).until(
+        EC.element_located_to_be_selected((By.ID, 'myCheckbox')))
+    btn = browser.find_element(By.TAG_NAME, 'button')
+    btn.click()
     result = WebDriverWait(browser, 10).until(
             EC.visibility_of_element_located((By.ID, 'result'))
         ).text

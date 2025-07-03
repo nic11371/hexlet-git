@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from twocaptcha import TwoCaptcha
 from selenium.webdriver.chrome.options import Options
 
-solver = TwoCaptcha('06ec964a6d0ce53ba0c3bd4ca27aca80')
+solver = TwoCaptcha('')
 dict_result = {}
 img_name = 'img.png'
 

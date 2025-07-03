@@ -5,7 +5,7 @@ from twocaptcha import TwoCaptcha
 from selenium.webdriver.chrome.options import Options
 
 
-solver = TwoCaptcha('06ec964a6d0ce53ba0c3bd4ca27aca80')
+solver = TwoCaptcha('')
 #Создаём словарь для того чтобы положить в него результат ответа на API {'captchaId': '72447681441', 'code': 'gbkd'}
 dict_resut = {}
 img_name = 'img.png'
